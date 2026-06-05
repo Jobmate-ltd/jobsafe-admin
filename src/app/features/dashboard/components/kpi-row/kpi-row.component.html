@@ -1,0 +1,47 @@
+<div class="js-kpi-row-grid">
+  <app-kpi-card
+    accent="#E63946"
+    eyebrow="Open · high-severity"
+    [value]="kpi.openHighSeverity.value"
+    [sub]="kpi.openHighSeverity.sub"
+    [delta]="kpi.openHighSeverity.delta"
+    deltaDir="up"
+    [spark]="kpi.openHighSeverity.spark!"
+    sparkColor="#E63946"
+  />
+
+  @if (kpiState() === 'empty') {
+    <app-kpi-card eyebrow="Overdue actions" [emptyState]="true" />
+  } @else {
+    <app-kpi-card
+      accent="#F59E0B"
+      eyebrow="Overdue actions"
+      [value]="kpi.overdueActions.value"
+      [sub]="kpi.overdueActions.sub"
+      [delta]="kpi.overdueActions.delta"
+      deltaDir="flat"
+      [spark]="kpi.overdueActions.spark!"
+      sparkColor="#F59E0B"
+    />
+  }
+
+  <app-kpi-card
+    accent="#0A0A0A"
+    eyebrow="Incidents this week"
+    [value]="kpi.thisWeek.value"
+    [sub]="kpi.thisWeek.sub"
+    [delta]="kpi.thisWeek.delta + ' vs last week'"
+    deltaDir="up"
+    [spark]="kpi.thisWeek.spark!"
+    sparkColor="#0A0A0A"
+  />
+
+  <app-kpi-card
+    accent="#22C55E"
+    eyebrow="Days since last LTI"
+    [value]="kpi.daysSinceLTI.value"
+    [sub]="kpi.daysSinceLTI.sub"
+    [delta]="kpi.daysSinceLTI.delta"
+    deltaDir="flat"
+  />
+</div>

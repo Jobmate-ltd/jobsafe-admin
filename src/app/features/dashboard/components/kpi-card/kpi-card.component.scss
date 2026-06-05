@@ -1,0 +1,149 @@
+:host {
+  display: block;
+}
+
+.js-kpi-card {
+  background: var(--canvas);
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 160ms;
+
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.js-kpi-accent-bar {
+  height: 3px;
+  background: var(--kpi-accent, #0A0A0A);
+  flex-shrink: 0;
+}
+
+.js-kpi-body {
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.js-kpi-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.js-kpi-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.js-kpi-eyebrow {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-4);
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.js-kpi-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--ink-1);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.js-kpi-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-4);
+  margin-top: 4px;
+  letter-spacing: -0.005em;
+}
+
+.js-kpi-spark {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 4px;
+}
+
+.js-kpi-footer {
+  border-top: 1px solid var(--line-3);
+  padding-top: 8px;
+}
+
+.js-kpi-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.delta-up {
+  color: #E63946;
+}
+
+.delta-down {
+  color: #15803D;
+}
+
+.delta-flat {
+  color: var(--ink-4);
+}
+
+.js-kpi-arrow {
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Empty state */
+.js-kpi-empty {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px 16px;
+  border-top: 3px solid #22C55E;
+  min-height: 130px;
+  text-align: center;
+}
+
+.js-kpi-empty-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803D;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.js-kpi-empty-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-1);
+  letter-spacing: -0.01em;
+}
+
+.js-kpi-empty-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-4);
+}

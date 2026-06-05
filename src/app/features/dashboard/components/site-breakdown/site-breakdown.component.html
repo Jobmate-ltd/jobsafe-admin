@@ -1,0 +1,41 @@
+<div class="js-card">
+  <div class="js-card-head">
+    <div>
+      <h2 class="js-card-title">Site breakdown</h2>
+      <p class="js-card-sub">This week · 5 depots</p>
+    </div>
+  </div>
+
+  <div class="js-site-list">
+    @for (s of sites; track s.name) {
+      <div class="js-site-row">
+        <div class="js-site-header">
+          <span class="js-site-name">{{ s.name }}</span>
+          <span class="js-site-total">{{ siteTotal(s) }}</span>
+        </div>
+        <div class="js-site-bar-track">
+          <div class="js-stacked-bar" [style.width.%]="barWidthPercent(s)">
+            @for (cat of catOrder; track cat) {
+              @if (s.stacks[cat]) {
+                <div
+                  [style.background]="catColor(cat)"
+                  [style.width.%]="segWidthPercent(s, cat)"
+                ></div>
+              }
+            }
+          </div>
+        </div>
+        <div class="js-site-dots">
+          @for (cat of catOrder; track cat) {
+            @if (s.stacks[cat]) {
+              <span class="js-site-dot-item">
+                <span class="js-site-dot" [style.background]="catColor(cat)"></span>
+                <span class="js-site-dot-count">{{ s.stacks[cat] }}</span>
+              </span>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="js-app" [class.sidebar-collapsed]="sidebarCollapsed()">
+  <app-sidebar [collapsed]="sidebarCollapsed()" />
+  <div class="js-main">
+    <app-topbar
+      [dateRange]="dateRange()"
+      [site]="site()"
+      (dateRangeChange)="dateRange.set($event)"
+      (toggleSidebar)="toggleSidebar()"
+    />
+    <div class="js-content">
+      <app-kpi-row [kpiState]="kpiState()" />
+      <div class="js-mid-grid">
+        <app-live-feed />
+        <div class="js-side-stack">
+          <app-category-chart />
+          <app-site-breakdown />
+        </div>
+      </div>
+      <app-trend-chart />
+      <footer class="js-pagefoot">
+        <span>JobSafe · v2.4.1</span>
+        <span class="js-pagefoot-sep">·</span>
+        <span>UK region · AWS eu-west-2</span>
+        <span class="js-pagefoot-sep">·</span>
+        <span>Data refresh: 30s</span>
+      </footer>
+    </div>
+  </div>
+</div>

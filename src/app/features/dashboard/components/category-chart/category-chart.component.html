@@ -1,0 +1,44 @@
+<div class="js-card">
+  <div class="js-card-head">
+    <div>
+      <h2 class="js-card-title">By category</h2>
+      <p class="js-card-sub">Last {{ range() }} · {{ totalCount() }} total</p>
+    </div>
+    <div class="js-segment small">
+      @for (r of ranges; track r) {
+        <button
+          class="js-segment-btn"
+          [class.active]="range() === r"
+          (click)="setRange(r)"
+        >{{ r }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="js-cat-body">
+    <div class="js-cat-donut">
+      <apx-chart
+        [series]="donutSeries()"
+        [chart]="donutChart"
+        [labels]="donutLabels"
+        [colors]="donutColors"
+        [legend]="donutLegend"
+        [dataLabels]="donutDataLabels"
+        [plotOptions]="donutPlotOptions"
+        [stroke]="donutStroke"
+        [tooltip]="donutTooltip"
+      ></apx-chart>
+    </div>
+
+    <div class="js-cat-legend">
+      @for (cat of categories; track cat.key) {
+        <div class="js-cat-legend-row">
+          <span class="js-cat-legend-dot" [style.background]="categoryDefs[cat.key].color"></span>
+          <span class="js-cat-legend-label">{{ categoryDefs[cat.key].label }}</span>
+          <span class="js-cat-legend-count">{{ cat.count }}</span>
+          <span class="js-cat-delta" [class]="getDeltaClass(cat.delta)">{{ getDeltaLabel(cat.delta) }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+@if (emptyState()) {
+  <div class="js-kpi-card js-kpi-empty">
+    <div class="js-kpi-empty-icon">✓</div>
+    <div class="js-kpi-empty-text">No overdue actions</div>
+    <div class="js-kpi-empty-sub">All clear for now</div>
+  </div>
+} @else {
+  <div class="js-kpi-card" [style.--kpi-accent]="accent()">
+    <div class="js-kpi-accent-bar"></div>
+    <div class="js-kpi-body">
+      <div class="js-kpi-top">
+        <div class="js-kpi-text">
+          <div class="js-kpi-eyebrow">{{ eyebrow() }}</div>
+          <div class="js-kpi-value">{{ value() }}</div>
+          <div class="js-kpi-sub">{{ sub() }}</div>
+        </div>
+        @if (spark() !== null) {
+          <div class="js-kpi-spark">
+            <apx-chart
+              [series]="sparkSeries()"
+              [chart]="sparkChartOpts"
+              [stroke]="sparkStroke"
+              [fill]="sparkFill"
+              [grid]="sparkGrid"
+              [xaxis]="sparkXaxis"
+              [yaxis]="sparkYaxis"
+              [markers]="sparkMarkers"
+              [tooltip]="sparkTooltip"
+              [colors]="[sparkColor() || accent()]"
+            ></apx-chart>
+          </div>
+        }
+      </div>
+      <div class="js-kpi-footer">
+        <span class="js-kpi-delta" [class]="deltaClass">
+          @if (deltaArrow) { <span class="js-kpi-arrow">{{ deltaArrow }}</span> }
+          {{ delta() }}
+        </span>
+      </div>
+    </div>
+  </div>
+}

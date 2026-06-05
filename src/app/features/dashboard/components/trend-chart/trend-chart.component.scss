@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+.js-trend-chart-wrap {
+  padding: 8px 12px 8px;
+  min-height: 256px;
+}
+
+.js-trend-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.js-trend-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-1);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background 120ms, color 120ms, opacity 120ms, border-color 120ms;
+  letter-spacing: -0.005em;
+
+  &:hover {
+    background: var(--line-3);
+    color: var(--ink-1);
+    border-color: #D1D5DB;
+  }
+
+  &.inactive {
+    opacity: 0.4;
+    border-style: dashed;
+  }
+}
+
+.js-trend-key-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

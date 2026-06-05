@@ -1,0 +1,49 @@
+<aside class="js-sidebar" [class.collapsed]="collapsed()">
+  <div class="js-sidebar-brand">
+    <img src="assets/jobsafe-logo-light.png" alt="JobSafe" class="js-sidebar-logo" />
+    @if (!collapsed()) {
+      <div class="js-sidebar-org">
+        <div class="js-sidebar-org-name">North Star Logistics</div>
+        <div class="js-sidebar-org-role">HSSE manager</div>
+      </div>
+    }
+  </div>
+
+  <nav class="js-sidebar-nav">
+    @for (item of navItems; track item.key) {
+      <a
+        class="js-nav-item"
+        [class.active]="item.active"
+        [class.sos]="item.sos"
+        href="#"
+        [title]="collapsed() ? item.label : ''"
+      >
+        <ion-icon [name]="item.icon" class="js-nav-icon"></ion-icon>
+        @if (!collapsed()) {
+          <span class="js-nav-label">{{ item.label }}</span>
+          @if (item.badge != null) {
+            <span class="js-nav-badge" [style.background]="item.badgeColor || '#0A0A0A'">{{ item.badge }}</span>
+          }
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="js-sidebar-spacer"></div>
+
+  <nav class="js-sidebar-nav js-sidebar-nav-bottom">
+    @for (item of bottomItems; track item.key) {
+      <a
+        class="js-nav-item"
+        [class.sos]="item.sos"
+        href="#"
+        [title]="collapsed() ? item.label : ''"
+      >
+        <ion-icon [name]="item.icon" class="js-nav-icon"></ion-icon>
+        @if (!collapsed()) {
+          <span class="js-nav-label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+</aside>

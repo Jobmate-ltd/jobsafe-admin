@@ -1,0 +1,110 @@
+<div class="js-card js-feed-card">
+  <div class="js-card-head">
+    <div>
+      <h2 class="js-card-title">Live Feed</h2>
+      <p class="js-card-sub">Real-time incident stream · {{ filteredIncidents().length }} showing</p>
+    </div>
+    <div class="js-card-tools">
+      <div class="js-search-wrap">
+        <ion-icon name="search-outline" class="js-search-icon"></ion-icon>
+        <input
+          class="js-search"
+          type="text"
+          placeholder="Search incidents…"
+          [ngModel]="query()"
+          (ngModelChange)="query.set($event)"
+        />
+      </div>
+      <button class="js-ghost-btn">
+        <ion-icon name="download-outline" style="font-size:13px"></ion-icon>
+        Export
+      </button>
+    </div>
+  </div>
+
+  <div class="js-feed-filters">
+    @for (chip of filterChips; track chip.key) {
+      <button
+        class="js-chip"
+        [class.active]="filter() === chip.key"
+        (click)="setFilter(chip.key)"
+      >
+        {{ chip.label }}
+        <span class="js-chip-count">{{ chip.count }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="js-feed-list">
+    @for (inc of filteredIncidents(); track inc.id) {
+      <div class="js-feed-row" [style.background]="tintFor(inc.cat)">
+        <div class="js-feed-stripe" [style.background]="colorFor(inc.cat)"></div>
+
+        <div class="js-feed-tag-col">
+          <span
+            class="js-cat-tag"
+            [style.background]="colorFor(inc.cat)"
+            [style.color]="isNearMiss(inc.cat) ? '#0A0A0A' : '#FFFFFF'"
+          >{{ labelFor(inc.cat) }}</span>
+        </div>
+
+        <div class="js-feed-main">
+          <div class="js-feed-title-line">
+            <span class="js-feed-id">{{ inc.id }}</span>
+            <span class="js-feed-dot">·</span>
+            <a class="js-feed-title" href="#">{{ inc.title }}</a>
+          </div>
+          <div class="js-feed-meta">
+            <span>{{ inc.reporter }}</span>
+            <span class="js-feed-meta-sep">·</span>
+            <span class="js-feed-meta-icon-wrap">
+              <ion-icon name="location-outline" class="js-feed-meta-icon"></ion-icon>
+              {{ inc.site }}
+            </span>
+            <span class="js-feed-meta-sep">·</span>
+            <span class="js-feed-meta-icon-wrap">
+              <ion-icon name="time-outline" class="js-feed-meta-icon"></ion-icon>
+              {{ inc.time }}
+            </span>
+          </div>
+        </div>
+
+        <div class="js-feed-tail">
+          <span
+            class="js-sev-pill"
+            [style.color]="sevColor(inc.sev)"
+            [style.background]="sevBg(inc.sev)"
+          >{{ inc.sev }}</span>
+          <span
+            class="js-status-pill"
+            [style.color]="statusColor(inc.status)"
+            [style.background]="statusBg(inc.status)"
+            [style.box-shadow]="'inset 0 0 0 1px ' + statusRing(inc.status)"
+          >
+            <span class="js-status-pill-dot" [style.background]="statusColor(inc.status)"></span>
+            {{ inc.status }}
+          </span>
+          <div class="js-feed-actions">
+            <button class="js-mini-btn">Assign</button>
+            <button class="js-mini-btn">View</button>
+            <button class="js-mini-btn primary">Review</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (filteredIncidents().length === 0) {
+      <div class="js-feed-empty">
+        <div class="js-feed-empty-icon">○</div>
+        <div class="js-feed-empty-text">No incidents match your filter</div>
+      </div>
+    }
+  </div>
+
+  <div class="js-card-foot">
+    <a href="#" class="js-link">
+      View all reports
+      <ion-icon name="arrow-forward-outline" style="font-size:12px"></ion-icon>
+    </a>
+  </div>
+</div>

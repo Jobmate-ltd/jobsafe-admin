@@ -1,0 +1,47 @@
+<div class="js-card">
+  <div class="js-card-head">
+    <div>
+      <h2 class="js-card-title">12-week trend</h2>
+      <p class="js-card-sub">Incidents by category · click legend to toggle</p>
+    </div>
+    <div class="js-card-tools">
+      <div class="js-trend-legend">
+        @for (leg of legendKeys; track leg.key) {
+          <button
+            class="js-trend-key"
+            [class.inactive]="!isActive(leg.key)"
+            (click)="toggleKey(leg.key)"
+          >
+            <span class="js-trend-key-dot" [style.background]="leg.color"></span>
+            {{ leg.label }}
+          </button>
+        }
+      </div>
+      <div class="js-segment small">
+        @for (v of views; track v) {
+          <button
+            class="js-segment-btn"
+            [class.active]="view() === v"
+            (click)="setView(v)"
+          >{{ v }}</button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="js-trend-chart-wrap">
+    <apx-chart
+      [series]="chartOptions().series"
+      [chart]="chartOptions().chart"
+      [stroke]="chartOptions().stroke"
+      [colors]="chartOptions().colors"
+      [grid]="chartOptions().grid"
+      [xaxis]="chartOptions().xaxis"
+      [yaxis]="chartOptions().yaxis"
+      [legend]="chartOptions().legend"
+      [tooltip]="chartOptions().tooltip"
+      [annotations]="chartOptions().annotations"
+      [markers]="chartOptions().markers"
+    ></apx-chart>
+  </div>
+</div>

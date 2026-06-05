@@ -1,0 +1,42 @@
+<header class="js-topbar">
+  <div class="js-topbar-left">
+    <button class="js-iconbtn" (click)="onToggleSidebar()" aria-label="Toggle sidebar">
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+    <div class="js-breadcrumb">
+      <span class="js-breadcrumb-page">Dashboard</span>
+    </div>
+  </div>
+
+  <div class="js-topbar-center">
+    <div class="js-segment">
+      @for (range of dateRanges; track range) {
+        <button
+          class="js-segment-btn"
+          [class.active]="dateRange() === range"
+          (click)="setDateRange(range)"
+        >{{ range }}</button>
+      }
+    </div>
+
+    <button class="js-pillbtn">
+      <span class="js-pillbtn-dot"></span>
+      {{ site() }}
+      <ion-icon name="chevron-down-outline" style="font-size:12px; opacity:0.6"></ion-icon>
+    </button>
+  </div>
+
+  <div class="js-topbar-right">
+    <div class="js-status-chip">
+      <span class="js-status-dot"></span>
+      Live · Refreshing
+    </div>
+
+    <button class="js-iconbtn js-bell-wrap" aria-label="Notifications">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <span class="js-bell-dot"></span>
+    </button>
+
+    <button class="js-avatar" aria-label="Account">CM</button>
+  </div>
+</header>
