@@ -10,5 +10,8 @@ npm-debug.log*
 .idea/
 .DS_Store
 
+# Claude Code harness
+.claude/
+
 # Tests / coverage
 coverage/
